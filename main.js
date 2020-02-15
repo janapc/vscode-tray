@@ -3,9 +3,10 @@ const {
   app, Menu, Tray, dialog,
 } = require('electron');
 const Store = require('electron-store');
-
+const fixPath = require('fix-path');
 const { spawn } = require('child_process');
 
+fixPath();
 const schema = {
   projects: {
     type: 'string',
@@ -14,7 +15,6 @@ const schema = {
 
 const store = new Store({ schema });
 let mainTray = {};
-
 if (app.dock) app.dock.hide();
 
 function render(tray = mainTray) {
